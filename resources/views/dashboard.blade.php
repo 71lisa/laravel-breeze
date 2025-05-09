@@ -71,56 +71,6 @@
                                         <button onclick="toggleDeleteModal({{ $mhs->id }})" class="text-2xl text-red-500 hover:text-red-700"><i class="bi bi-trash-fill"></i></button>
                                     </div>
 
-                                    <button onclick="toggleEditModal({{ $mhs->id }})" class="text-2xl text-blue-500 hover:text-blue-700">
-                                        <i class="bi bi-pencil-fill"></i>
-                                    </button>
-
-                                    <div id="deleteModal-{{ $mhs->id }}"
-                                        class="fixed inset-0 hidden overflow-y-auto bg-black/50">
-                                        <div class="flex items-center justify-center min-h-screen px-4">
-                                            <div class="relative w-full max-w-md p-6 bg-white rounded-lg shadow-lg">
-                                                <h2 class="mb-4 text-lg font-semibold">Apakah kamu yakin untuk
-                                                    menghapus?</h2>
-                                                <div class="flex justify-end space-x-2">
-                                                    <button type="button" onclick="toggleDeleteModal({{ $mhs->id }})"
-                                                        class="px-4 py-2 text-gray-700 bg-gray-200 rounded hover:bg-gray-300">Cancel</button>
-                                                    <form action="{{ route('mahasiswa.destroy', $mhs->id) }}"
-                                                        method="POST">
-                                                        @csrf
-                                                        @method('DELETE')
-                                                        <button type="submit"
-                                                            class="px-4 py-2 text-white bg-red-500 rounded hover:bg-red-700">Delete</button>
-                                                    </form>
-
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <!-- Modal Edit Mahasiswa -->
-                                    <div id="editMahasiswaModal-{{ $mhs->id }}" class="fixed inset-0 hidden overflow-y-auto bg-black/50">
-                                        <div class="flex items-center justify-center min-h-screen px-4">
-                                            <div class="relative w-full max-w-md p-6 bg-white rounded-lg shadow-lg">
-                                                <h2 class="mb-4 text-lg font-semibold">Edit Mahasiswa</h2>
-                                                <form action="{{ route('mahasiswa.update', $mhs->id) }}" method="POST">
-                                                    @csrf
-                                                    @method('PUT')
-                                                    <div class="mb-4">
-                                                        <label for="nama" class="block mb-2 text-sm font-medium text-gray-700">Nama</label>
-                                                        <input type="text" id="nama" name="nama" class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring focus:ring-blue-300" value="{{ $mhs->nama }}" required>
-                                                    </div>
-                                                    <div class="mb-4">
-                                                        <label for="nim" class="block mb-2 text-sm font-medium text-gray-700">NIM</label>
-                                                        <input type="text" id="nim" name="nim" pattern="\d{9}" class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring focus:ring-blue-300" value="{{ $mhs->nim }}" required>
-                                                    </div>
-                                                    <div class="flex justify-end space-x-2">
-                                                        <button type="button" onclick="toggleEditModal({{ $mhs->id }})" class="px-4 py-2 text-gray-700 bg-gray-200 rounded hover:bg-gray-300">Cancel</button>
-                                                        <button type="submit" class="px-4 py-2 text-white bg-blue-500 rounded hover:bg-blue-700">Update</button>
-                                                    </div>
-                                                </form>
-                                            </div>
-                                        </div>
-                                    </div>
                                 </td>
                             </tr>
                         @endforeach

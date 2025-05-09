@@ -18,8 +18,6 @@ Route::post('/mahasiswa', [MahasiswaController::class, 'store'])->middleware(['a
 
 Route::delete('/mahasiswa/{id}', [MahasiswaController::class, 'destroy'])->middleware(['auth', 'verified'])->name('mahasiswa.destroy');
 
-Route::put('/mahasiswa/{id}', [MahasiswaController::class, 'update'])->name('mahasiswa.update');
-
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
