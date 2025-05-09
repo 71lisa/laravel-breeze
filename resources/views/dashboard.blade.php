@@ -57,7 +57,7 @@
                             <th class="border border-gray-300 px-4 py-2">No</th>
                             <th class="border border-gray-300 px-4 py-2">Nama</th>
                             <th class="border border-gray-300 px-4 py-2">NIM</th>
-                            <th class="border border-gray-300 px-4 py-2">~</th>
+                            <th class="border border-gray-300 px-4 py-2">Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -71,7 +71,27 @@
                                         <button onclick="toggleDeleteModal({{ $mhs->id }})" class="text-2xl text-red-500 hover:text-red-700"><i class="bi bi-trash-fill"></i></button>
                                     </div>
 
-                                </td>
+                                <div id="deleteModal-{{ $mhs->id }}"
+                                        class="fixed inset-0 hidden overflow-y-auto bg-black/50">
+                                        <div class="flex items-center justify-center min-h-screen px-4">
+                                            <div class="relative w-full max-w-md p-6 bg-white rounded-lg shadow-lg">
+                                                <h2 class="mb-4 text-lg font-semibold">Apakah kamu yakin untuk
+                                                    menghapus?</h2>
+                                                <div class="flex justify-end space-x-2">
+                                                    <button type="button" onclick="toggleDeleteModal({{ $mhs->id }})"
+                                                        class="px-4 py-2 text-gray-700 bg-gray-200 rounded hover:bg-gray-300">Cancel</button>
+                                                    <form action="{{ route('mahasiswa.destroy', $mhs->id) }}"
+                                                        method="POST">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button type="submit"
+                                                            class="px-4 py-2 text-white bg-red-500 rounded hover:bg-red-700">Delete</button>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </tr>
                         @endforeach
                     </tbody>
