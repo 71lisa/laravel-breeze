@@ -67,7 +67,8 @@
                                 <td class="border border-gray-300 px-4 py-2">{{$mhs->nama}}</td>
                                 <td class="border border-gray-300 px-4 py-2">{{$mhs->nim}}</td>
                                 <td class="border border-gray-300 px-4 py-2">
-                                    <div class="flex space-x-2">
+                                    <div class="flex justify-center space-x-2">
+                                        <button onclick="toggleEditModal({{ $mhs->id }})" class="text-2xl text-blue-500 hover:text-blue-700"><i class="bi bi-pencil-square"></i></button>
                                         <button onclick="toggleDeleteModal({{ $mhs->id }})" class="text-2xl text-red-500 hover:text-red-700"><i class="bi bi-trash-fill"></i></button>
                                     </div>
 
@@ -89,6 +90,36 @@
                                                     </form>
                                                 </div>
                                             </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div id="editMahasiswaModal-{{ $mhs->id }}" class="fixed inset-0 hidden bg-black/50 z-50">
+                                    <div class="flex items-center justify-center min-h-screen px-4">
+                                        <div class="bg-white p-6 rounded-lg shadow-lg w-full max-w-md">
+                                            <h2 class="text-lg font-bold mb-4">Edit Data Mahasiswa</h2>
+                                            <form action="{{ route('mahasiswa.update', $mhs->id) }}" method="POST">
+                                                @csrf
+                                                @method('PUT')
+                                                    <!-- Input Nama -->
+                                                    <div class="mb-4">
+                                                        <label for="nama-{{ $mhs->id }}" class="block text-sm font-medium text-gray-700">Nama</label>
+                                                        <input type="text" name="nama" id="nama-{{ $mhs->id }}" value="{{ $mhs->nama }}"
+                                                            class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
+                                                    </div>
+
+                                                    <!-- Input NIM -->
+                                                    <div class="mb-4">
+                                                        <label for="nim-{{ $mhs->id }}" class="block text-sm font-medium text-gray-700">NIM</label>
+                                                        <input type="text" name="nim" id="nim-{{ $mhs->id }}" value="{{ $mhs->nim }}"
+                                                            class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
+                                                    </div>                                                <div class="flex justify-end space-x-2 mt-4">
+                                                    <button type="button" onclick="toggleEditModal({{ $mhs->id }})"
+                                                        class="px-4 py-2 bg-gray-300 rounded hover:bg-gray-400">Cancel</button>
+                                                    <button type="submit"
+                                                        class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-700">Save</button>
+                                                </div>
+                                            </form>
                                         </div>
                                     </div>
                                 </div>

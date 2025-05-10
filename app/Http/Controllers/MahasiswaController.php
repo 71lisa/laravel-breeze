@@ -35,4 +35,23 @@ class MahasiswaController extends Controller
             'alert-type' => 'warning'
         ]);
     }
+
+    public function update(Request $request, $id)
+    {
+        $request->validate([
+            'nama' => 'required|string|max:255',
+            'nim' => 'required|string|max:255|unique:mahasiswas,nim,' . $id,
+        ]);
+
+        $mahasiswa = Mahasiswa::findOrFail($id);
+        $mahasiswa->update([
+            'nama' => $request->nama,
+            'nim' => $request->nim,
+        ]);
+
+        return redirect()->route('dashboard')->with([
+            'message' => 'Data Mahasiswa Berhasil Diedit',
+            'alert-type' => 'info'
+        ]);
+    }
 }
